@@ -1,5 +1,5 @@
-import useTwitchUser from "./hooks/useTwitchUser";
-import { useTwitchFollowed } from "./hooks/useTwitchFollowed";
+import useTwitchUser from "../hooks/useTwitchUser";
+import { useTwitchFollowed } from "../hooks/useTwitchFollowed";
 import TwitchChannelCard from "./TwitchChannelCard";
 
 export default function TwitchFollowedChannels({

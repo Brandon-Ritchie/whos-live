@@ -1,4 +1,4 @@
-import Twitch from "@/lib/twitch/Twitch";
+import Twitch from "@/lib/twitch/components/Twitch";
 
 export default function Root() {
   return (

@@ -4,7 +4,7 @@
 
 @layer base {
   h1 {
-    @apply my-8 text-center text-5xl font-bold text-primary;
+    @apply my-8 text-5xl font-bold text-primary;
   }
 
   h2 {

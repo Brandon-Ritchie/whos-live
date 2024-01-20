@@ -41,7 +41,7 @@ export default function Root() {
 
   return (
     <>
-      <h2>Twitch</h2>
+      <h1>Twitch</h1>
       <div className="flex gap-4">
         {!twitchUser && (
           <a href={twitchAuthUrl} className="btn btn-primary">
@@ -79,7 +79,7 @@ export default function Root() {
             </div>
           ))}
       </div>
-      <h2>YouTube</h2>
+      <h1>YouTube</h1>
       <div>
         <p>YouTube subscription feed here</p>
       </div>

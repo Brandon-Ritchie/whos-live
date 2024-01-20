@@ -4,8 +4,22 @@ import { useEffect, useState } from "react";
 
 export default function Root() {
   // TODO type these properly
+  const [twitchAccessToken, setTwitchAccessToken] = useState<string>("");
   const [twitchUser, setTwitchUser] = useState<any>("");
   const [userTwitchFollowers, setUserTwitchFollowers] = useState<any>("");
+
+  const twitchAccessTokenFromLocalStorage =
+    localStorage.getItem("twitchAccessToken");
+
+  if (twitchAccessTokenFromLocalStorage && !twitchAccessToken) {
+    setTwitchAccessToken(twitchAccessTokenFromLocalStorage);
+  }
+
+  const twitchUserFromLocalStorage = localStorage.getItem("twitchUser");
+
+  if (twitchUserFromLocalStorage && !twitchUser) {
+    setTwitchUser(JSON.parse(twitchUserFromLocalStorage));
+  }
 
   const twitchAuthBaseUrl = "https://id.twitch.tv/oauth2/authorize";
   const twitchTokenResponseType = "token";
@@ -15,12 +29,28 @@ export default function Root() {
 
   const twitchAuthUrl = `${twitchAuthBaseUrl}?response_type=${twitchTokenResponseType}&client_id=${twitchClientId}&redirect_uri=${twitchRedirectUri}&scope=${twitchScopes}`;
 
-  const twitchAccessToken = document.location.hash.split("&")[0].split("=")[1];
+  if (!twitchAccessToken && document.location.hash) {
+    setTwitchAccessToken(document.location.hash.split("&")[0].split("=")[1]);
+    localStorage.setItem(
+      "twitchAccessToken",
+      document.location.hash.split("&")[0].split("=")[1],
+    );
+  }
 
   useEffect(() => {
     async function getTwitchUser() {
       if (!twitchAccessToken) return;
-      setTwitchUser(await useTwitchUser({ twitchAccessToken, twitchClientId }));
+      const twitchUser = await useTwitchUser({
+        twitchAccessToken,
+        twitchClientId,
+      });
+      try {
+        setTwitchUser(twitchUser);
+        localStorage.setItem("twitchUser", JSON.stringify(twitchUser));
+      } catch (error) {
+        console.error(error);
+        clearLocalStorage();
+      }
     }
     getTwitchUser();
   }, [twitchAccessToken]);
@@ -28,16 +58,28 @@ export default function Root() {
   useEffect(() => {
     async function getUserFollowers() {
       if (!twitchUser.id) return;
-      setUserTwitchFollowers(
-        await useTwitchFollowers({
-          twitchAccessToken,
-          twitchClientId,
-          twitchUserId: twitchUser.id,
-        }),
-      );
+      try {
+        setUserTwitchFollowers(
+          await useTwitchFollowers({
+            twitchAccessToken,
+            twitchClientId,
+            twitchUserId: twitchUser.id,
+          }),
+        );
+      } catch (error) {
+        console.error(error);
+        clearLocalStorage();
+      }
     }
     getUserFollowers();
   }, [twitchUser.id]);
+
+  function clearLocalStorage() {
+    localStorage.removeItem("twitchAccessToken");
+    localStorage.removeItem("twitchUser");
+    setTwitchAccessToken("");
+    setTwitchUser("");
+  }
 
   return (
     <>

@@ -1,7 +1,17 @@
-export default () => {
-  const twitchClientId = import.meta.env.VITE_TWITCH_CLIENT_ID;
-  const twitchRedirectUri = import.meta.env.VITE_TWITCH_REDIRECT_URI;
+import { twitchClientId } from "../utils/constants";
+
+const TwitchConnectButton = () => {
+  const twitchRedirectUri: unknown = import.meta.env.VITE_TWITCH_REDIRECT_URI;
   const twitchScopes = "user:read:follows";
+
+  if (typeof twitchRedirectUri !== "string") {
+    console.error("Missing VITE_TWITCH_REDIRECT_URI environment variable");
+    return (
+      <div className="alert-danger alert">
+        <p>Some environment variables seems to be missing</p>
+      </div>
+    );
+  }
 
   return (
     <a
@@ -12,3 +22,5 @@ export default () => {
     </a>
   );
 };
+
+export default TwitchConnectButton;

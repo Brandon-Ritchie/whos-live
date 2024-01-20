@@ -1,11 +1,15 @@
-import useTwitchFollowers from "./useTwitchFollowers";
-import useTwitchUser from "./useTwitchUser";
+import useTwitchFollowed, { TwitchChannel } from "./useTwitchFollowed";
+import useTwitchUser, { TwitchUser } from "./useTwitchUser";
 import { useEffect, useState } from "react";
 
 export default () => {
-  const [twitchAccessToken, setTwitchAccessToken] = useState<string>("");
-  const [twitchUser, setTwitchUser] = useState<any>("");
-  const [userTwitchFollowers, setUserTwitchFollowers] = useState<any>("");
+  const [twitchAccessToken, setTwitchAccessToken] = useState<string | null>(
+    null,
+  );
+  const [twitchUser, setTwitchUser] = useState<TwitchUser | null>(null);
+  const [userTwitchFollowed, setUserTwitchFollowed] = useState<
+    TwitchChannel[] | null
+  >(null);
 
   const twitchAccessTokenFromLocalStorage =
     localStorage.getItem("twitchAccessToken");
@@ -37,11 +41,12 @@ export default () => {
   useEffect(() => {
     async function getTwitchUser() {
       if (!twitchAccessToken) return;
-      const twitchUser = await useTwitchUser({
-        twitchAccessToken,
-        twitchClientId,
-      });
+
       try {
+        const twitchUser = await useTwitchUser({
+          twitchAccessToken,
+          twitchClientId,
+        });
         setTwitchUser(twitchUser);
         localStorage.setItem("twitchUser", JSON.stringify(twitchUser));
       } catch (error) {
@@ -49,15 +54,16 @@ export default () => {
         clearLocalStorage();
       }
     }
+
     getTwitchUser();
   }, [twitchAccessToken]);
 
   useEffect(() => {
     async function getUserFollowers() {
-      if (!twitchUser.id) return;
+      if (!twitchUser?.id || !twitchAccessToken) return;
       try {
-        setUserTwitchFollowers(
-          await useTwitchFollowers({
+        setUserTwitchFollowed(
+          await useTwitchFollowed({
             twitchAccessToken,
             twitchClientId,
             twitchUserId: twitchUser.id,
@@ -68,14 +74,15 @@ export default () => {
         clearLocalStorage();
       }
     }
+
     getUserFollowers();
-  }, [twitchUser.id]);
+  }, [twitchUser?.id]);
 
   function clearLocalStorage() {
     localStorage.removeItem("twitchAccessToken");
     localStorage.removeItem("twitchUser");
     setTwitchAccessToken("");
-    setTwitchUser("");
+    setTwitchUser(null);
   }
 
   return (
@@ -88,9 +95,9 @@ export default () => {
           </a>
         )}
         {twitchUser &&
-          userTwitchFollowers &&
+          userTwitchFollowed &&
           // TODO type this properly
-          userTwitchFollowers.map((follower: any) => (
+          userTwitchFollowed.map((follower: any) => (
             <div className="flex-1" key={follower.user_id}>
               <img
                 src={follower.thumbnail_url

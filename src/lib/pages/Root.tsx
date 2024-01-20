@@ -1,13 +1,11 @@
-import Twitch from "@/lib/twitch/components/Twitch";
+import Twitch from "../twitch/components/Twitch";
+import Youtube from "../youtube/components/YouTube";
 
 export default function Root() {
   return (
     <>
       <Twitch />
-      <h1>YouTube</h1>
-      <div>
-        <p>YouTube subscription feed here</p>
-      </div>
+      <Youtube />
     </>
   );
 }

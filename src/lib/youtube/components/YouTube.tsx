@@ -1,4 +1,5 @@
 import YouTubeConnectButton from "./YouTubeConnectButton";
+import YouTubeSubscriptions from "./YouTubeSubscriptions";
 
 export default function YouTube() {
   const youtubeAccessToken = localStorage.getItem("youtubeAccessToken");
@@ -9,7 +10,7 @@ export default function YouTube() {
       {!youtubeAccessToken ? (
         <YouTubeConnectButton />
       ) : (
-        <p>We got you connected!</p>
+        <YouTubeSubscriptions youtubeAccessToken={youtubeAccessToken} />
       )}
     </>
   );

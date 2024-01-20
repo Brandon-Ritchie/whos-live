@@ -1,4 +1,4 @@
-import Card from "../../shared-components/Card";
+import Card from "../../shared/Card";
 import { remToPixels } from "../../utils/remToPixels";
 import { TwitchChannel } from "../hooks/useTwitchFollowed";
 

@@ -36,7 +36,7 @@ export type UseTwitchFollowedParams = {
 
 const fetchTwitchFollowed: QueryFunction<
   TwitchChannel[],
-  ["followed", UseTwitchFollowedParams]
+  ["twitch-followed", UseTwitchFollowedParams]
 > = async ({ queryKey }) => {
   const { twitchAccessToken, twitchUserId } = queryKey[1];
   const res = await axios.get<JsonReturn>(
@@ -56,7 +56,7 @@ export const useTwitchFollowed = (
   params: UseTwitchFollowedParams,
 ): [TwitchChannel[] | undefined, QueryStatus] => {
   const results = useQuery({
-    queryKey: ["followed", params],
+    queryKey: ["twitch-followed", params],
     queryFn: fetchTwitchFollowed,
   });
 

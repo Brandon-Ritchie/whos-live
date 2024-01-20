@@ -1,4 +1,4 @@
-import { googleClientId } from "../../utils/constants";
+import { youtubeClientId } from "../../utils/constants";
 
 export default function YouTubeConnectButton() {
   const youtubeRedirectUri: unknown = import.meta.env.VITE_YOUTUBE_REDIRECT_URI;
@@ -17,7 +17,7 @@ export default function YouTubeConnectButton() {
 
   return (
     <a
-      href={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${youtubeRedirectUri}&response_type=token&scope=${youtubeScopes}`}
+      href={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${youtubeClientId}&redirect_uri=${youtubeRedirectUri}&response_type=token&scope=${youtubeScopes}`}
       className="btn btn-primary"
     >
       Link your YouTube account

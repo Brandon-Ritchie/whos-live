@@ -78,6 +78,7 @@ const PlayListItemsResponseSchema = z.object({
 });
 type PlayListItemsResponse = z.infer<typeof PlayListItemsResponseSchema>;
 
+// TODO refactor this and actually use the zod schemas to validate the data
 const fetchYouTubeSubscribedVideos: QueryFunction<
   PlayListItem[],
   [
@@ -89,6 +90,8 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
   ]
 > = async ({ queryKey }) => {
   const { youtubeAccessToken, channelIds } = queryKey[1];
+
+  if (channelIds.length === 0) return [];
 
   const res = await axios.get<ChannelsResponse[]>(
     "https://www.googleapis.com/youtube/v3/channels?" +
@@ -136,8 +139,6 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
     (playlistItems) => playlistItems.data?.items,
   );
 
-  // sort videos by videoPublishedAt, which exists on the contentDetails object
-  // of each video
   videos.sort((a, b) => {
     const aDate = new Date(a?.contentDetails.videoPublishedAt);
     const bDate = new Date(b?.contentDetails.videoPublishedAt);

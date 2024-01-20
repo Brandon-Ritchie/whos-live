@@ -1,5 +1,5 @@
 export default ({ children }: { children: React.ReactNode }) => (
-  <div className="card bg-base-100 shadow-xl">
+  <div className="card card-compact bg-neutral shadow-xl">
     <div className="card-body">{children}</div>
   </div>
 );

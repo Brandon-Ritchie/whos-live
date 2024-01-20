@@ -21,10 +21,11 @@ export default function Root() {
     setTwitchUser(JSON.parse(twitchUserFromLocalStorage));
   }
 
+  const twitchClientId = "ifow1k6nszrt10kx88o1osjhddzld7";
   const twitchRedirectUri = import.meta.env.VITE_TWITCH_REDIRECT_URI;
   const twitchScopes = "user:read:follows";
 
-  const twitchAuthUrl = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=ifow1k6nszrt10kx88o1osjhddzld7&redirect_uri=${twitchRedirectUri}&scope=${twitchScopes}`;
+  const twitchAuthUrl = `https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=${twitchClientId}&redirect_uri=${twitchRedirectUri}&scope=${twitchScopes}`;
 
   if (!twitchAccessToken && document.location.hash) {
     setTwitchAccessToken(document.location.hash.split("&")[0].split("=")[1]);

@@ -1,7 +1,14 @@
 export default function Root() {
   return (
     <>
-      <h1>Hello World!</h1>
+      <h2>Twitch</h2>
+      <div>
+        <p>Followed Twitch channel feed here</p>
+      </div>
+      <h2>YouTube</h2>
+      <div>
+        <p>YouTube subscription feed here</p>
+      </div>
     </>
   );
 }

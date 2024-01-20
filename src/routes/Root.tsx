@@ -24,7 +24,7 @@ export default function Root() {
   const twitchAuthBaseUrl = "https://id.twitch.tv/oauth2/authorize";
   const twitchTokenResponseType = "token";
   const twitchClientId = "ifow1k6nszrt10kx88o1osjhddzld7";
-  const twitchRedirectUri = "http://localhost:5173";
+  const twitchRedirectUri = import.meta.env.VITE_TWITCH_REDIRECT_URI;
   const twitchScopes = "user:read:follows";
 
   const twitchAuthUrl = `${twitchAuthBaseUrl}?response_type=${twitchTokenResponseType}&client_id=${twitchClientId}&redirect_uri=${twitchRedirectUri}&scope=${twitchScopes}`;

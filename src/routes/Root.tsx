@@ -8,6 +8,8 @@ export default function Root() {
   const [twitchUser, setTwitchUser] = useState<any>("");
   const [userTwitchFollowers, setUserTwitchFollowers] = useState<any>("");
 
+  console.log("current meta mode", import.meta.env.MODE);
+
   const twitchAccessTokenFromLocalStorage =
     localStorage.getItem("twitchAccessToken");
 

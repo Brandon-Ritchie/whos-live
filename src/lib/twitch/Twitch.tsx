@@ -1,5 +1,5 @@
-import useTwitchFollowers from "@/hooks/useTwitchFollowers";
-import useTwitchUser from "@/hooks/useTwitchUser";
+import useTwitchFollowers from "./useTwitchFollowers";
+import useTwitchUser from "./useTwitchUser";
 import { useEffect, useState } from "react";
 
 export default () => {

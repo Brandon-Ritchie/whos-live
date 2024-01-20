@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import PageLayout from "./lib/components/PageLayout.tsx";
+import PageLayout from "./lib/shared-components/PageLayout.tsx";
 import Root from "./routes/Root.tsx";
 
 const router = createBrowserRouter([

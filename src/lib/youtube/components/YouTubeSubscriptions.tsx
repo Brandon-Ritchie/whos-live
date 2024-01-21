@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { YouTubeAccessTokenContext } from "../contexts/YouTubeAccessTokenContext";
 import { useYouTubeSubscribedVideos } from "../hooks/useYouTubeSubscribedVideos";
 import { useYouTubeSubscriptions } from "../hooks/useYouTubeSubscriptions";
 import YouTubeVideoCard from "./YouTubeVideoCard";
@@ -7,12 +9,13 @@ export default function YouTubeSubscriptions({
 }: {
   youtubeAccessToken: string;
 }) {
+  const [, setTwitchAccessToken] = useContext(YouTubeAccessTokenContext);
   const [YouTubeSubscriptions, subscriptionsStatus] = useYouTubeSubscriptions({
     youtubeAccessToken,
   });
 
   if (subscriptionsStatus === "error") {
-    // TODO definitely need to move this to context
+    setTwitchAccessToken(null);
     localStorage.removeItem("youtubeAccessToken");
   }
 

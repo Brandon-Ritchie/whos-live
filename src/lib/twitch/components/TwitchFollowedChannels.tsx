@@ -2,7 +2,7 @@ import useTwitchUser from "../hooks/useTwitchUser";
 import { useTwitchFollowed } from "../hooks/useTwitchFollowed";
 import TwitchChannelCard from "./TwitchChannelCard";
 import { useContext } from "react";
-import { TwitchAccessTokenContext } from "../contexts/twitchAccessTokenContext";
+import { TwitchAccessTokenContext } from "../contexts/TwitchAccessTokenContext";
 
 export default function TwitchFollowedChannels({
   twitchAccessToken,

@@ -10,8 +10,8 @@ This web application connects with various media platforms to show live streams 
   - [x] Show live followed channels
   - [ ] Be able to watch live in the page
   - [ ] Discover?
-- [ ] YouTube Integration
-  - [ ] videos from subscriptions
+- [x] YouTube Integration
+  - [x] videos from subscriptions
   - [ ] Be able to watch videos in the page
   - [ ] recommended videos?
 - [ ] Preferences Page

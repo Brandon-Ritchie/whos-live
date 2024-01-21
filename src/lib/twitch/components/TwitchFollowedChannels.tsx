@@ -1,15 +1,23 @@
 import useTwitchUser from "../hooks/useTwitchUser";
 import { useTwitchFollowed } from "../hooks/useTwitchFollowed";
 import TwitchChannelCard from "./TwitchChannelCard";
+import { useContext } from "react";
+import { TwitchAccessTokenContext } from "../contexts/twitchAccessTokenContext";
 
 export default function TwitchFollowedChannels({
   twitchAccessToken,
 }: {
   twitchAccessToken: string;
 }) {
-  const [twitchUser] = useTwitchUser({
+  const [, setTwitchAccessToken] = useContext(TwitchAccessTokenContext);
+  const [twitchUser, userStatus] = useTwitchUser({
     twitchAccessToken,
   });
+
+  if (userStatus === "error") {
+    localStorage.removeItem("twitchAccessToken");
+    setTwitchAccessToken(null);
+  }
 
   return (
     <>

@@ -1,12 +1,16 @@
 import TwitchConnectButton from "./TwitchConnectButton";
 import TwitchFollowedChannels from "./TwitchFollowedChannels";
 import { TwitchAccessTokenContext } from "../contexts/TwitchAccessTokenContext";
-import { useContext } from "react";
+import { useState } from "react";
 
 const Twitch = () => {
-  const [twitchAccessToken, setTwitchAccessToken] = useContext(
-    TwitchAccessTokenContext,
+  const [twitchAccessToken, setTwitchAccessToken] = useState<string | null>(
+    null,
   );
+
+  const accessTokenFromStorage = localStorage.getItem("twitchAccessToken");
+  if (accessTokenFromStorage && !twitchAccessToken)
+    setTwitchAccessToken(accessTokenFromStorage);
 
   return (
     <TwitchAccessTokenContext.Provider

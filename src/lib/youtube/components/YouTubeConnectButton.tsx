@@ -13,8 +13,6 @@ export default function YouTubeConnectButton() {
     );
   }
 
-  console.log(youtubeRedirectUri);
-
   return (
     <a
       href={`https://accounts.google.com/o/oauth2/v2/auth?client_id=${youtubeClientId}&redirect_uri=${youtubeRedirectUri}&response_type=token&scope=${youtubeScopes}`}

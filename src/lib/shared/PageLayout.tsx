@@ -37,10 +37,7 @@ const NavBar = () => {
               </svg>
             </button>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow"
-          >
+          <ul className="menu dropdown-content menu-sm z-[1] mt-3 w-52 rounded-box bg-neutral p-2 shadow">
             <Links />
           </ul>
         </div>
@@ -61,7 +58,7 @@ const Links = () => {
     <>
       {links.map((link) => (
         <li key={link.to}>
-          <Link to={link.to} className="font-bold">
+          <Link to={link.to} className="font-bold" tabIndex={0}>
             {link.label}
           </Link>
         </li>

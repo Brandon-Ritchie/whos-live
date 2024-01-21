@@ -1,12 +1,16 @@
-import { useContext } from "react";
+import { useState } from "react";
 import { YouTubeAccessTokenContext } from "../contexts/YouTubeAccessTokenContext";
 import YouTubeConnectButton from "./YouTubeConnectButton";
 import YouTubeSubscriptions from "./YouTubeSubscriptions";
 
 export default function YouTube() {
-  const [youtubeAccessToken, setTwitchAccessToken] = useContext(
-    YouTubeAccessTokenContext,
+  const [youtubeAccessToken, setTwitchAccessToken] = useState<string | null>(
+    null,
   );
+
+  const accessTokenFromStorage = localStorage.getItem("youtubeAccessToken");
+  if (accessTokenFromStorage && !youtubeAccessToken)
+    setTwitchAccessToken(accessTokenFromStorage);
 
   return (
     <YouTubeAccessTokenContext.Provider

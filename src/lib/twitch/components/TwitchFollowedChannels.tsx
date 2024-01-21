@@ -12,7 +12,7 @@ export default function TwitchFollowedChannels({
   });
 
   return (
-    <div className="flex gap-4">
+    <>
       {!twitchUser ? (
         <div>Loading...</div>
       ) : (
@@ -21,7 +21,7 @@ export default function TwitchFollowedChannels({
           twitchAccessToken={twitchAccessToken}
         />
       )}
-    </div>
+    </>
   );
 }
 
@@ -38,7 +38,7 @@ const ChannelsWrapper = ({
   });
 
   return (
-    <div className="flex gap-4">
+    <div className="m-auto flex flex-wrap justify-between gap-4">
       {userTwitchFollowed &&
         userTwitchFollowed.map((channel) => (
           <TwitchChannelCard key={channel.id} channel={channel} />

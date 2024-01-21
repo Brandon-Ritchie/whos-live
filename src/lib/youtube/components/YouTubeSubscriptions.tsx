@@ -3,7 +3,7 @@ import { YouTubeAccessTokenContext } from "../contexts/YouTubeAccessTokenContext
 import { useYouTubeSubscribedVideos } from "../hooks/useYouTubeSubscribedVideos";
 import { useYouTubeSubscriptions } from "../hooks/useYouTubeSubscriptions";
 import YouTubeVideoCard from "./YouTubeVideoCard";
-import LoadingIndicator from "../../shared/LoadingIndicator";
+import LoadingIndicator from "@/lib/shared/LoadingIndicator";
 
 export default function YouTubeSubscriptions({
   youtubeAccessToken,

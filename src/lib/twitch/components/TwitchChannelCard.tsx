@@ -1,6 +1,6 @@
-import Card from "../../shared/Card";
-import { remToPixels } from "../../utils/remToPixels";
+import { remToPixels } from "@/lib/utils/remToPixels";
 import { TwitchChannel } from "../hooks/useTwitchFollowed";
+import Card from "@/lib/shared/Card";
 
 const TwitchChannelCard = ({ channel }: { channel: TwitchChannel }) => {
   const thumbnailWidth = remToPixels(24); // rem from max-w-96

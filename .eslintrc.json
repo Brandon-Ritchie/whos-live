@@ -34,11 +34,11 @@
       "version": "detect"
     },
     "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
+      "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts"]
     },
     "import/resolver": {
       "node": {
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+        "extensions": [".js", ".jsx", ".ts", ".tsx", ".d.ts"]
       },
       "typescript": {
         "alwaysTryTypes": true

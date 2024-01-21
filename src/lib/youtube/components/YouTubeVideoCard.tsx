@@ -1,4 +1,4 @@
-import Card from "../../shared/Card";
+import Card from "@/lib/shared/Card";
 import { YouTubeVideo } from "../hooks/useYouTubeSubscribedVideos";
 
 const YouTubeVideoCard = ({ video }: { video: YouTubeVideo }) => {

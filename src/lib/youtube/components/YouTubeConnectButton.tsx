@@ -1,4 +1,4 @@
-import { youtubeClientId } from "../../utils/constants";
+import { youtubeClientId } from "@/lib/utils/constants";
 
 export default function YouTubeConnectButton() {
   const youtubeRedirectUri: unknown = import.meta.env.VITE_YOUTUBE_REDIRECT_URI;

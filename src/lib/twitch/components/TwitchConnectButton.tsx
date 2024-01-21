@@ -1,4 +1,4 @@
-import { twitchClientId } from "../../utils/constants";
+import { twitchClientId } from "@/lib/utils/constants";
 
 const TwitchConnectButton = () => {
   const twitchRedirectUri: unknown = import.meta.env.VITE_TWITCH_REDIRECT_URI;

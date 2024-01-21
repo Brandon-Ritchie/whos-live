@@ -3,7 +3,7 @@ import { useTwitchFollowed } from "../hooks/useTwitchFollowed";
 import TwitchChannelCard from "./TwitchChannelCard";
 import { useContext } from "react";
 import { TwitchAccessTokenContext } from "../contexts/TwitchAccessTokenContext";
-import LoadingIndicator from "../../shared/LoadingIndicator";
+import LoadingIndicator from "@/lib/shared/LoadingIndicator";
 
 export default function TwitchFollowedChannels({
   twitchAccessToken,

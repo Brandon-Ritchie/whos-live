@@ -1,6 +1,6 @@
 import TwitchConnectButton from "./TwitchConnectButton";
 import TwitchFollowedChannels from "./TwitchFollowedChannels";
-import { TwitchAccessTokenContext } from "../contexts/twitchAccessTokenContext";
+import { TwitchAccessTokenContext } from "../TwitchAccessTokenContext";
 import { useState } from "react";
 
 const Twitch = () => {

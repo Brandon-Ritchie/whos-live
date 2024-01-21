@@ -8,13 +8,11 @@ const Twitch = () => {
   return (
     <>
       <h1>Twitch</h1>
-      <div className="flex gap-4">
-        {!twitchAccessToken ? (
-          <TwitchConnectButton />
-        ) : (
-          <TwitchFollowedChannels twitchAccessToken={twitchAccessToken} />
-        )}
-      </div>
+      {!twitchAccessToken ? (
+        <TwitchConnectButton />
+      ) : (
+        <TwitchFollowedChannels twitchAccessToken={twitchAccessToken} />
+      )}
     </>
   );
 };

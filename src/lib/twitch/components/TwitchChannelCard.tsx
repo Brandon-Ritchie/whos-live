@@ -8,30 +8,28 @@ const TwitchChannelCard = ({ channel }: { channel: TwitchChannel }) => {
 
   return (
     <Card>
-      <div className="max-w-96">
-        <a href={`https://twitch.tv/${channel.user_name}`}>
-          <img
-            src={channel.thumbnail_url
-              .replace("{width}", thumbnailWidth.toString())
-              .replace("{height}", thumbnailHeight.toString())}
-            alt={channel.user_name}
-            className="cursor-pointer"
-          />
-        </a>
-        <a
-          href={`https://twitch.tv/${channel.user_name}`}
-          className="text-primary"
-        >
-          {channel.user_name}
-        </a>
-        <p>{channel.title}</p>
-        <a
-          href={`https://www.twitch.tv/directory/category/${channel.game_name}`}
-          className="text-secondary"
-        >
-          {channel.game_name}
-        </a>
-      </div>
+      <a href={`https://twitch.tv/${channel.user_name}`}>
+        <img
+          src={channel.thumbnail_url
+            .replace("{width}", thumbnailWidth.toString())
+            .replace("{height}", thumbnailHeight.toString())}
+          alt={channel.user_name}
+          className="cursor-pointer"
+        />
+      </a>
+      <a
+        href={`https://twitch.tv/${channel.user_name}`}
+        className="text-primary"
+      >
+        {channel.user_name}
+      </a>
+      <p>{channel.title}</p>
+      <a
+        href={`https://www.twitch.tv/directory/category/${channel.game_name}`}
+        className="text-secondary"
+      >
+        {channel.game_name}
+      </a>
     </Card>
   );
 };

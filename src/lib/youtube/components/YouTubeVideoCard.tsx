@@ -18,7 +18,6 @@ const YouTubeVideoCard = ({ video }: { video: YouTubeVideo }) => {
         {video.snippet.channelTitle}
       </a>
       <p>{video.snippet.title}</p>
-      <p className="mt-2 line-clamp-3">{video.snippet.description}</p>
     </Card>
   );
 };

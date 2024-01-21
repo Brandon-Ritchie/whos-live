@@ -25,7 +25,7 @@ const TwitchChannelCard = ({ channel }: { channel: TwitchChannel }) => {
       </a>
       <p>{channel.title}</p>
       <a
-        href={`https://www.twitch.tv/directory/category/${channel.game_name}`}
+        href={`https://www.twitch.tv/directory/category/${channel.game_name.toLowerCase()}`}
         className="text-secondary"
       >
         {channel.game_name}

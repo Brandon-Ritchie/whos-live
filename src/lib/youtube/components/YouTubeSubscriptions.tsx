@@ -25,12 +25,14 @@ export default function YouTubeSubscriptions({
   );
 
   return (
-    <div className="m-auto flex flex-wrap gap-4">
-      {subscribedVideosStatus === "pending" && <p>Loading...</p>}
-      {subscribedVideos &&
-        subscribedVideos.map((video) => (
-          <YouTubeVideoCard key={video.id} video={video} />
-        ))}
+    <div className="flex justify-center">
+      <div className="cards-container">
+        {subscribedVideosStatus === "pending" && <p>Loading...</p>}
+        {subscribedVideos &&
+          subscribedVideos.map((video) => (
+            <YouTubeVideoCard key={video.id} video={video} />
+          ))}
+      </div>
     </div>
   );
 }

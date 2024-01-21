@@ -3,13 +3,13 @@ import { Analytics } from "@vercel/analytics/react";
 
 const PageLayout = () => {
   return (
-    <div className="flex min-h-screen flex-col justify-between">
+    <>
       <Analytics />
       <NavBar />
-      <main className="flex-1 px-8 pb-4 lg:px-16">
+      <main className="px-8 pb-4 lg:px-16">
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
 

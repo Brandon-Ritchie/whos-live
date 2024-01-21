@@ -46,11 +46,13 @@ const ChannelsWrapper = ({
   });
 
   return (
-    <div className="m-auto flex flex-wrap gap-4">
-      {userTwitchFollowed &&
-        userTwitchFollowed.map((channel) => (
-          <TwitchChannelCard key={channel.id} channel={channel} />
-        ))}
+    <div className="flex justify-center">
+      <div className="cards-container">
+        {userTwitchFollowed &&
+          userTwitchFollowed.map((channel) => (
+            <TwitchChannelCard key={channel.id} channel={channel} />
+          ))}
+      </div>
     </div>
   );
 };

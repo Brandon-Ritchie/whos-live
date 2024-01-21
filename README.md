@@ -1,4 +1,4 @@
-# Whos Live?
+# ContentDash
 
 ## Description
 
@@ -8,13 +8,12 @@ This web application connects with various media platforms to show live streams 
 
 - [x] Twitch Integration
   - [x] Show live followed channels
-  - [ ] Be able to watch live in the page
-  - [ ] Discover?
+  - [ ] Be able to watch live in the page?
 - [x] YouTube Integration
   - [x] videos from subscriptions
   - [ ] Be able to watch videos in the page
-  - [ ] recommended videos?
 - [ ] Preferences Page
   - [ ] Show integrations list
   - [ ] configure integrations list
 - [x] Update eslint config
+- [ ] Better loading indicators

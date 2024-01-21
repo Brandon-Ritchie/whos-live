@@ -3,6 +3,7 @@ import { YouTubeAccessTokenContext } from "../contexts/YouTubeAccessTokenContext
 import { useYouTubeSubscribedVideos } from "../hooks/useYouTubeSubscribedVideos";
 import { useYouTubeSubscriptions } from "../hooks/useYouTubeSubscriptions";
 import YouTubeVideoCard from "./YouTubeVideoCard";
+import LoadingIndicator from "../../shared/LoadingIndicator";
 
 export default function YouTubeSubscriptions({
   youtubeAccessToken,
@@ -27,7 +28,8 @@ export default function YouTubeSubscriptions({
   return (
     <div className="flex justify-center">
       <div className="cards-container">
-        {subscribedVideosStatus === "pending" && <p>Loading...</p>}
+        {(subscribedVideosStatus === "pending" ||
+          subscriptionsStatus === "pending") && <LoadingIndicator />}
         {subscribedVideos &&
           subscribedVideos.map((video) => (
             <YouTubeVideoCard key={video.id} video={video} />

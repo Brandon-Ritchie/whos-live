@@ -3,6 +3,7 @@ import { useTwitchFollowed } from "../hooks/useTwitchFollowed";
 import TwitchChannelCard from "./TwitchChannelCard";
 import { useContext } from "react";
 import { TwitchAccessTokenContext } from "../contexts/TwitchAccessTokenContext";
+import LoadingIndicator from "../../shared/LoadingIndicator";
 
 export default function TwitchFollowedChannels({
   twitchAccessToken,
@@ -21,9 +22,8 @@ export default function TwitchFollowedChannels({
 
   return (
     <>
-      {!twitchUser ? (
-        <div>Loading...</div>
-      ) : (
+      {userStatus === "pending" && <LoadingIndicator />}
+      {twitchUser && (
         <ChannelsWrapper
           userId={twitchUser.id}
           twitchAccessToken={twitchAccessToken}

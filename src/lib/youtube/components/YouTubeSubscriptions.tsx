@@ -22,7 +22,7 @@ export default function YouTubeSubscriptions({
   );
 
   return (
-    <div className="m-auto flex flex-wrap justify-between gap-4">
+    <div className="m-auto flex flex-wrap gap-4">
       {subscribedVideosStatus === "pending" && <p>Loading...</p>}
       {subscribedVideos &&
         subscribedVideos.map((video) => (

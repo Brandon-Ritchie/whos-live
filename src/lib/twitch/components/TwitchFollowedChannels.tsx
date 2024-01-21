@@ -46,7 +46,7 @@ const ChannelsWrapper = ({
   });
 
   return (
-    <div className="grid w-full md:grid-cols-2 lg:grid-cols-3">
+    <div className="m-auto flex flex-wrap gap-4">
       {userTwitchFollowed &&
         userTwitchFollowed.map((channel) => (
           <TwitchChannelCard key={channel.id} channel={channel} />

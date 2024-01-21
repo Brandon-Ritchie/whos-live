@@ -28,7 +28,7 @@ const ChannelsResponseSchema = z.object({
 });
 type ChannelsResponse = z.infer<typeof ChannelsResponseSchema>;
 
-const PlayListItemSchema = z.object({
+const YouTubeVideoSchema = z.object({
   kind: z.string(),
   etag: z.string(),
   id: z.string(),
@@ -63,7 +63,7 @@ const PlayListItemSchema = z.object({
     videoPublishedAt: z.string(),
   }),
 });
-type PlayListItem = z.infer<typeof PlayListItemSchema>;
+export type YouTubeVideo = z.infer<typeof YouTubeVideoSchema>;
 
 const PlayListItemsResponseSchema = z.object({
   kind: z.string(),
@@ -74,13 +74,13 @@ const PlayListItemsResponseSchema = z.object({
     totalResults: z.number(),
     resultsPerPage: z.number(),
   }),
-  items: z.array(PlayListItemSchema),
+  items: z.array(YouTubeVideoSchema),
 });
 type PlayListItemsResponse = z.infer<typeof PlayListItemsResponseSchema>;
 
 // TODO refactor this and actually use the zod schemas to validate the data
 const fetchYouTubeSubscribedVideos: QueryFunction<
-  PlayListItem[],
+  YouTubeVideo[],
   [
     "youtube-subscribed-videos",
     {
@@ -152,7 +152,7 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
 export const useYouTubeSubscribedVideos = (
   youtubeAccessToken: string,
   channelIds: string[],
-): [PlayListItem[] | undefined, QueryStatus] => {
+): [YouTubeVideo[] | undefined, QueryStatus] => {
   const results = useQuery({
     queryKey: ["youtube-subscribed-videos", { youtubeAccessToken, channelIds }],
     queryFn: fetchYouTubeSubscribedVideos,

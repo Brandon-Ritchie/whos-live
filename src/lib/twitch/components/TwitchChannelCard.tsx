@@ -8,7 +8,7 @@ const TwitchChannelCard = ({ channel }: { channel: TwitchChannel }) => {
 
   return (
     <Card>
-      <div className="max-w-96 flex-1">
+      <div className="max-w-96">
         <a href={`https://twitch.tv/${channel.user_name}`}>
           <img
             src={channel.thumbnail_url

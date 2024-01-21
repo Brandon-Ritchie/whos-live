@@ -61,7 +61,7 @@ const fetchYouTubeSubscriptions: QueryFunction<
       `key=${youtubeClientId}&` +
       `part=snippet&` +
       `mine=true&` +
-      `maxResults=50&` +
+      `maxResults=25&` +
       "order=unread",
     {
       headers: {

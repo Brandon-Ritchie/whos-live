@@ -1,5 +1,6 @@
 import { useYouTubeSubscribedVideos } from "../hooks/useYouTubeSubscribedVideos";
 import { useYouTubeSubscriptions } from "../hooks/useYouTubeSubscriptions";
+import YouTubeVideoCard from "./YouTubeVideoCard";
 
 export default function YouTubeSubscriptions({
   youtubeAccessToken,
@@ -15,28 +16,17 @@ export default function YouTubeSubscriptions({
     localStorage.removeItem("youtubeAccessToken");
   }
 
-  const [subscribedVideos] = useYouTubeSubscribedVideos(
+  const [subscribedVideos, subscribedVideosStatus] = useYouTubeSubscribedVideos(
     youtubeAccessToken,
     YouTubeSubscriptions?.map((channel) => channel.resourceId.channelId) ?? [],
   );
 
   return (
-    <div className="flex w-full gap-4">
+    <div className="m-auto flex flex-wrap justify-between gap-4">
+      {subscribedVideosStatus === "pending" && <p>Loading...</p>}
       {subscribedVideos &&
         subscribedVideos.map((video) => (
-          <div key={video.id}>
-            <a
-              href={`https://www.youtube.com/watch?v=${video.contentDetails.videoId}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src={video.snippet.thumbnails.high.url}
-                alt={video.snippet.title}
-              />
-            </a>
-            <p>{video.snippet.channelTitle}</p>
-          </div>
+          <YouTubeVideoCard key={video.id} video={video} />
         ))}
     </div>
   );

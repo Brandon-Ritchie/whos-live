@@ -11,7 +11,7 @@ This web application connects with various media platforms to show live streams 
   - [ ] Be able to watch live in the page
 - [x] YouTube Integration
   - [x] videos from subscriptions
-  - [ ] Figure out quota "costs"
+  - [x] Figure out quota "costs"
   - [ ] Seperate live from VODs?
   - [ ] Be able to watch videos in the page
 - [ ] Preferences Page
@@ -21,3 +21,13 @@ This web application connects with various media platforms to show live streams 
     - [ ] Can't add Netflix, because there is no public API anymore
 - [x] Update eslint config
 - [x] Better loading indicators
+
+## Notes
+
+- The YouTube API Quota usage should be ~27 units per page refresh
+  - 1 unit to get subscribed channels
+    - Currently fetches the most recently active 25 channels
+  - 1 unit to get the uploads playlist from those channels
+  - 1 (25 total) unit PER channel to get video information from those playlists
+- This means the application should be able to refresh subscription videos ~370 times before the daily quota is hit
+  - This might either needs to be raised eventually, or see if there is a more quota efficient way to do this

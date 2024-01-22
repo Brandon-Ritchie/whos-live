@@ -11,6 +11,7 @@ This web application connects with various media platforms to show live streams 
   - [ ] Be able to watch live in the page
 - [x] YouTube Integration
   - [x] videos from subscriptions
+  - [ ] Figure out quota "costs"
   - [ ] Seperate live from VODs?
   - [ ] Be able to watch videos in the page
 - [ ] Preferences Page

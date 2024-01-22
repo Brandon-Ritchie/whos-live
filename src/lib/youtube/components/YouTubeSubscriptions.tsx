@@ -11,7 +11,7 @@ export default function YouTubeSubscriptions({
   youtubeAccessToken: string;
 }) {
   const [, setTwitchAccessToken] = useContext(YouTubeAccessTokenContext);
-  const [YouTubeSubscriptions, subscriptionsStatus] = useYouTubeSubscriptions({
+  const [youTubeSubscriptions, subscriptionsStatus] = useYouTubeSubscriptions({
     youtubeAccessToken,
   });
 
@@ -22,7 +22,7 @@ export default function YouTubeSubscriptions({
 
   const [subscribedVideos, subscribedVideosStatus] = useYouTubeSubscribedVideos(
     youtubeAccessToken,
-    YouTubeSubscriptions?.map((channel) => channel.resourceId.channelId) ?? [],
+    youTubeSubscriptions?.map((channel) => channel.resourceId.channelId) ?? [],
   );
 
   return (

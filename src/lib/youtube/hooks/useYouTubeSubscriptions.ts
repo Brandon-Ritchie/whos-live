@@ -1,6 +1,6 @@
-import { youtubeClientId } from "../../utils/constants";
+import { youtubeClientId, youtubeOAuthEndpoint } from "../../utils/constants";
 import { QueryFunction, QueryStatus, useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import z from "zod";
 
 const SnippetSchema = z.object({
@@ -80,7 +80,23 @@ export const useYouTubeSubscriptions = (params: {
     queryKey: ["youtube-subscriptions", params],
     queryFn: fetchYouTubeSubscriptions,
     staleTime: 1000 * 60 * 60,
+    retry: (failureCount, error) => {
+      if (isAxiosError(error) && error.response?.status === 401) {
+        return false;
+      }
+      return failureCount < 3;
+    },
   });
+
+  if (
+    results.status === "error" &&
+    isAxiosError(results.error) &&
+    results.error.response?.status === 401
+  ) {
+    if (youtubeOAuthEndpoint !== null) {
+      window.location.href = youtubeOAuthEndpoint;
+    }
+  }
 
   return [results.data, results.status];
 };

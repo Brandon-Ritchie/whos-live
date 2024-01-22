@@ -158,9 +158,5 @@ export const useYouTubeSubscribedVideos = (
     queryFn: fetchYouTubeSubscribedVideos,
   });
 
-  if (results.status === "error" && results.error.message === "Unauthorized") {
-    localStorage.removeItem("youtubeAccessToken");
-  }
-
   return [results.data, results.status];
 };

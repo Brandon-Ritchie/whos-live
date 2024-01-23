@@ -16,6 +16,7 @@ This web application connects with various media platforms to show live streams 
   - [x] Seperate live from VODs?
     > This is not possible, as there is no differentiation between livestreams and videos
   - [x] "Paginate" YouTube videos, showing 8 at a time
+    - [ ] Figure out why the screen moves when loading the next videos
   - [ ] Be able to watch videos in the page
 - [x] Filters on main page
   - [x] Show/Hide providers

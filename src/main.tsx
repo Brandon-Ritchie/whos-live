@@ -7,6 +7,7 @@ import Root from "./lib/pages/Root.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import OAuthTwitch from "./lib/twitch/components/OAuthTwitch.tsx";
 import OAuthYouTube from "./lib/youtube/components/OAuthYouTube.tsx";
+import Profile from "./lib/pages/Profile.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Root />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
       },
       {
         path: "/oauth/twitch",

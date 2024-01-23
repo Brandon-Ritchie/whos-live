@@ -52,7 +52,10 @@ const NavBar = () => {
 };
 
 const Links = () => {
-  const links = [{ to: "/", label: "Home" }];
+  const links = [
+    { to: "/", label: "Home" },
+    { to: "/profile", label: "Profile" },
+  ];
 
   return (
     <>

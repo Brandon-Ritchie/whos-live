@@ -18,11 +18,11 @@ export default function DropdownButton({
       >
         {label}
       </summary>
-      <ul
-        className={`menu dropdown-content z-[1] rounded-box bg-${backgroundColor ?? "neutral"} p-2 shadow`}
+      <div
+        className={`menu dropdown-content z-[1] rounded-box bg-${backgroundColor ?? "neutral"} max-h-52 overflow-hidden p-2 shadow`}
       >
-        {children}
-      </ul>
+        <ul className="overflow-y-auto">{children}</ul>
+      </div>
     </details>
   );
 }

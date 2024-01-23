@@ -95,6 +95,21 @@ const VideoFilters = ({
   return (
     <div className="mb-4">
       <DropdownButton label="Filter Channels" buttonColor="primary">
+        <li>
+          <button
+            onClick={() =>
+              setSelectedChannels(
+                selectedChannels.length === youtubeSubscriptions.length
+                  ? []
+                  : youtubeSubscriptions.map((channel) => channel.title),
+              )
+            }
+          >
+            {selectedChannels.length === youtubeSubscriptions.length
+              ? "Unselect All"
+              : "Select All"}
+          </button>
+        </li>
         {youtubeSubscriptions.map((channel) => (
           <li key={channel.resourceId.channelId}>
             <CheckBoxButton

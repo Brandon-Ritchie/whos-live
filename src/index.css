@@ -21,6 +21,11 @@
 
   .youtube-cards-wrapper {
     @apply flex flex-col items-center;
-    min-height: 38rem;
+  }
+
+  @media (min-width: 1280px) {
+    .youtube-cards-wrapper {
+      height: 42rem;
+    }
   }
 }

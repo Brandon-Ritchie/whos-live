@@ -84,12 +84,16 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
   [
     "youtube-subscribed-videos",
     {
-      youtubeAccessToken: string;
+      youtubeAccessToken: string | null;
       channelIds: string[];
     },
   ]
 > = async ({ queryKey }) => {
   const { youtubeAccessToken, channelIds } = queryKey[1];
+
+  if (youtubeAccessToken === null) {
+    throw new Error("No YouTube access token");
+  }
 
   if (channelIds.length === 0) return [];
 
@@ -150,7 +154,7 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
 };
 
 export const useYouTubeSubscribedVideos = (
-  youtubeAccessToken: string,
+  youtubeAccessToken: string | null,
   channelIds: string[],
 ): [YouTubeVideo[] | undefined, QueryStatus] => {
   const results = useQuery({

@@ -19,7 +19,7 @@ export default function DropdownButton({
         {label}
       </summary>
       <ul
-        className={`menu dropdown-content z-[1] w-52 rounded-box bg-${backgroundColor ?? "neutral"} p-2 shadow`}
+        className={`menu dropdown-content z-[1] rounded-box bg-${backgroundColor ?? "neutral"} p-2 shadow`}
       >
         {children}
       </ul>

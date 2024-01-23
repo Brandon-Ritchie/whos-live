@@ -50,11 +50,15 @@ const fetchYouTubeSubscriptions: QueryFunction<
   [
     "youtube-subscriptions",
     {
-      youtubeAccessToken: string;
+      youtubeAccessToken: string | null;
     },
   ]
 > = async ({ queryKey }) => {
   const { youtubeAccessToken } = queryKey[1];
+
+  if (youtubeAccessToken === null) {
+    throw new Error("No YouTube access token");
+  }
 
   const res = await axios.get(
     "https://www.googleapis.com/youtube/v3/subscriptions?" +
@@ -74,7 +78,7 @@ const fetchYouTubeSubscriptions: QueryFunction<
 };
 
 export const useYouTubeSubscriptions = (params: {
-  youtubeAccessToken: string;
+  youtubeAccessToken: string | null;
 }): [SubscriberSnippet[] | undefined, QueryStatus] => {
   const results = useQuery({
     queryKey: ["youtube-subscriptions", params],

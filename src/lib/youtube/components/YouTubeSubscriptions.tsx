@@ -1,40 +1,112 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { YouTubeAccessTokenContext } from "../contexts/YouTubeAccessTokenContext";
 import { useYouTubeSubscribedVideos } from "../hooks/useYouTubeSubscribedVideos";
-import { useYouTubeSubscriptions } from "../hooks/useYouTubeSubscriptions";
+import {
+  SubscriberSnippet,
+  useYouTubeSubscriptions,
+} from "../hooks/useYouTubeSubscriptions";
 import YouTubeVideoCard from "./YouTubeVideoCard";
 import LoadingIndicator from "@/lib/shared/LoadingIndicator";
+import DropdownButton from "@/lib/shared/DropdownButton";
+import CheckBoxButton from "@/lib/shared/CheckBoxButton";
 
-export default function YouTubeSubscriptions({
-  youtubeAccessToken,
-}: {
-  youtubeAccessToken: string;
-}) {
-  const [, setTwitchAccessToken] = useContext(YouTubeAccessTokenContext);
-  const [youTubeSubscriptions, subscriptionsStatus] = useYouTubeSubscriptions({
+export default function YouTubeSubscriptionsWrapper() {
+  const [youtubeAccessToken, setYoutubeAccessToken] = useContext(
+    YouTubeAccessTokenContext,
+  );
+  const [youtubeSubscriptions, subscriptionsStatus] = useYouTubeSubscriptions({
     youtubeAccessToken,
   });
 
   if (subscriptionsStatus === "error") {
-    setTwitchAccessToken(null);
+    setYoutubeAccessToken(null);
     localStorage.removeItem("youtubeAccessToken");
   }
 
+  return (
+    <>
+      {subscriptionsStatus === "pending" && <LoadingIndicator />}
+      {youtubeSubscriptions && (
+        <YouTubeSubscriptions youtubeSubscriptions={youtubeSubscriptions} />
+      )}
+    </>
+  );
+}
+
+function YouTubeSubscriptions({
+  youtubeSubscriptions,
+}: {
+  youtubeSubscriptions: SubscriberSnippet[];
+}) {
+  const sortedSubscriptions = youtubeSubscriptions.sort((a, b) =>
+    a.title.localeCompare(b.title),
+  );
+  const [youtubeAccessToken] = useContext(YouTubeAccessTokenContext);
+  const [selectedChannels, setSelectedChannels] = useState<string[]>(
+    sortedSubscriptions.map((channel) => channel.title),
+  );
+
   const [subscribedVideos, subscribedVideosStatus] = useYouTubeSubscribedVideos(
     youtubeAccessToken,
-    youTubeSubscriptions?.map((channel) => channel.resourceId.channelId) ?? [],
+    sortedSubscriptions.map((channel) => channel.resourceId.channelId),
+  );
+
+  const filteredSubscribedVideos = subscribedVideos?.filter((video) =>
+    selectedChannels.includes(video.snippet.channelTitle),
   );
 
   return (
-    <div className="flex justify-center">
-      <div className="cards-container">
-        {(subscribedVideosStatus === "pending" ||
-          subscriptionsStatus === "pending") && <LoadingIndicator />}
-        {subscribedVideos &&
-          subscribedVideos.map((video) => (
-            <YouTubeVideoCard key={video.id} video={video} />
-          ))}
+    <>
+      <VideoFilters
+        selectedChannels={selectedChannels}
+        setSelectedChannels={setSelectedChannels}
+        youtubeSubscriptions={sortedSubscriptions}
+      />
+      <div className="flex justify-center">
+        <div className="cards-container">
+          {subscribedVideosStatus === "pending" && <LoadingIndicator />}
+          {filteredSubscribedVideos &&
+            filteredSubscribedVideos.map((video) => (
+              <YouTubeVideoCard key={video.id} video={video} />
+            ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
+
+const VideoFilters = ({
+  selectedChannels,
+  setSelectedChannels,
+  youtubeSubscriptions,
+}: {
+  selectedChannels: string[];
+  setSelectedChannels: React.Dispatch<React.SetStateAction<string[]>>;
+  youtubeSubscriptions: SubscriberSnippet[];
+}) => {
+  function handleCheckedChange(checked: boolean, channelTitle: string) {
+    setSelectedChannels((prev) =>
+      checked
+        ? [...prev, channelTitle]
+        : prev.filter((title) => title !== channelTitle),
+    );
+  }
+
+  return (
+    <div className="mb-4">
+      <DropdownButton label="Filter Channels" buttonColor="primary">
+        {youtubeSubscriptions.map((channel) => (
+          <li key={channel.resourceId.channelId}>
+            <CheckBoxButton
+              label={channel.title}
+              checked={selectedChannels.includes(channel.title)}
+              onChange={(checked) =>
+                handleCheckedChange(checked, channel.title)
+              }
+            />
+          </li>
+        ))}
+      </DropdownButton>
+    </div>
+  );
+};

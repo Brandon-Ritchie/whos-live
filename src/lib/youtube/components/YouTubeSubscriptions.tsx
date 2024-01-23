@@ -70,7 +70,7 @@ function YouTubeSubscriptions({
         setSelectedChannels={setSelectedChannels}
         youtubeSubscriptions={sortedSubscriptions}
       />
-      <div className="flex justify-center">
+      <div className="youtube-cards-wrapper">
         {subscribedVideosStatus === "pending" && <LoadingIndicator />}
         {paginatedSubscribedVideos && (
           <div className="cards-container">

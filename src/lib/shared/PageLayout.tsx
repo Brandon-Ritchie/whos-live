@@ -3,13 +3,13 @@ import { Analytics } from "@vercel/analytics/react";
 
 const PageLayout = () => {
   return (
-    <>
+    <div className="min-h-full">
       <Analytics />
       <NavBar />
       <main className="px-8 pb-4 lg:px-16">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 };
 

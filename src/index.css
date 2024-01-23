@@ -18,4 +18,9 @@
   .cards-container {
     @apply inline-grid justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
   }
+
+  .youtube-cards-wrapper {
+    @apply flex flex-col items-center;
+    min-height: 38rem;
+  }
 }

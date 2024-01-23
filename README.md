@@ -12,11 +12,16 @@ This web application connects with various media platforms to show live streams 
 - [x] YouTube Integration
   - [x] videos from subscriptions
   - [x] Figure out quota "costs"
-  - [ ] Seperate live from VODs?
+  - [x] automatically "refresh" the token if it is no longer good
+  - [x] Seperate live from VODs?
+    > This is not possible, as there is no differentiation between livestreams and videos
   - [ ] Be able to watch videos in the page
+- [ ] Filters on main page
+  - [x] Show/Hide providers
+  - [ ] Filter YouTube Videos by Channel
 - [ ] Preferences Page
   - [ ] Show integrations list
-  - [ ] configure integrations list
+  - [ ] Configure integrations list
   - [ ] "FAQ"
     - [ ] Can't add Netflix, because there is no public API anymore
 - [x] Update eslint config

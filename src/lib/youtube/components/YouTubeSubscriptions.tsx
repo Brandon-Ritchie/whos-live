@@ -71,13 +71,14 @@ function YouTubeSubscriptions({
         youtubeSubscriptions={sortedSubscriptions}
       />
       <div className="flex justify-center">
-        <div className="cards-container">
-          {subscribedVideosStatus === "pending" && <LoadingIndicator />}
-          {paginatedSubscribedVideos &&
-            paginatedSubscribedVideos.map((video) => (
+        {subscribedVideosStatus === "pending" && <LoadingIndicator />}
+        {paginatedSubscribedVideos && (
+          <div className="cards-container">
+            {paginatedSubscribedVideos.map((video) => (
               <YouTubeVideoCard key={video.id} video={video} />
             ))}
-        </div>
+          </div>
+        )}
       </div>
       <div className="mt-4 flex justify-center">
         <PagintationButtons

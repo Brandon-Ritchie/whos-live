@@ -22,9 +22,9 @@ export default function TwitchFollowedChannels({
 
   return (
     <>
-      {userStatus === "pending" && <LoadingIndicator />}
       {twitchUser && (
         <ChannelsWrapper
+          userStatus={userStatus}
           userId={twitchUser.id}
           twitchAccessToken={twitchAccessToken}
         />
@@ -34,9 +34,11 @@ export default function TwitchFollowedChannels({
 }
 
 const ChannelsWrapper = ({
+  userStatus,
   userId,
   twitchAccessToken,
 }: {
+  userStatus: "pending" | "success" | "error";
   userId: string;
   twitchAccessToken: string;
 }) => {
@@ -47,12 +49,14 @@ const ChannelsWrapper = ({
 
   return (
     <div className="flex justify-center">
-      <div className="cards-container">
-        {userTwitchFollowed &&
-          userTwitchFollowed.map((channel) => (
+      {userStatus === "pending" && <LoadingIndicator />}
+      {userTwitchFollowed && (
+        <div className="cards-container">
+          {userTwitchFollowed.map((channel) => (
             <TwitchChannelCard key={channel.id} channel={channel} />
           ))}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

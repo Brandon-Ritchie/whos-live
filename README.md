@@ -15,15 +15,16 @@ This web application connects with various media platforms to show live streams 
   - [x] automatically "refresh" the token if it is no longer good
   - [x] Seperate live from VODs?
     > This is not possible, as there is no differentiation between livestreams and videos
+  - [x] "Paginate" YouTube videos, showing 8 at a time
   - [ ] Be able to watch videos in the page
-- [ ] Filters on main page
+- [x] Filters on main page
   - [x] Show/Hide providers
-  - [ ] Filter YouTube Videos by Channel
+  - [x] Filter YouTube Videos by Channel
 - [ ] Preferences Page
-  - [ ] Show integrations list
-  - [ ] Configure integrations list
-  - [ ] "FAQ"
-    - [ ] Can't add Netflix, because there is no public API anymore
+  - [ ] Integrations lists and other preferences
+    > Do this as a form with form submission
+- [ ] "FAQ" Page
+  - [ ] Can't add Netflix, because there is no public API anymore
 - [x] Update eslint config
 - [x] Better loading indicators
 

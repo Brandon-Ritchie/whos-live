@@ -9,6 +9,7 @@ import YouTubeVideoCard from "./YouTubeVideoCard";
 import LoadingIndicator from "@/lib/shared/LoadingIndicator";
 import DropdownButton from "@/lib/shared/DropdownButton";
 import CheckBoxButton from "@/lib/shared/CheckBoxButton";
+import PagintationButtons from "@/lib/shared/PaginationButtons";
 
 export default function YouTubeSubscriptionsWrapper() {
   const [youtubeAccessToken, setYoutubeAccessToken] = useContext(
@@ -51,8 +52,15 @@ function YouTubeSubscriptions({
     sortedSubscriptions.map((channel) => channel.resourceId.channelId),
   );
 
+  const [selectedPage, setSelectedPage] = useState(1);
+
   const filteredSubscribedVideos = subscribedVideos?.filter((video) =>
     selectedChannels.includes(video.snippet.channelTitle),
+  );
+
+  const paginatedSubscribedVideos = filteredSubscribedVideos?.slice(
+    (selectedPage - 1) * 8,
+    selectedPage * 8,
   );
 
   return (
@@ -65,11 +73,18 @@ function YouTubeSubscriptions({
       <div className="flex justify-center">
         <div className="cards-container">
           {subscribedVideosStatus === "pending" && <LoadingIndicator />}
-          {filteredSubscribedVideos &&
-            filteredSubscribedVideos.map((video) => (
+          {paginatedSubscribedVideos &&
+            paginatedSubscribedVideos.map((video) => (
               <YouTubeVideoCard key={video.id} video={video} />
             ))}
         </div>
+      </div>
+      <div className="mt-4 flex justify-center">
+        <PagintationButtons
+          selectedPage={selectedPage}
+          setSelectedPage={setSelectedPage}
+          maxPage={Math.ceil((filteredSubscribedVideos?.length ?? 0) / 8)}
+        />
       </div>
     </>
   );

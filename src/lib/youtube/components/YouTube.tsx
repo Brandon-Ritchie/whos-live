@@ -20,7 +20,7 @@ export default function YouTube() {
       {!youtubeAccessToken ? (
         <YouTubeConnectButton />
       ) : (
-        <YouTubeSubscriptions youtubeAccessToken={youtubeAccessToken} />
+        <YouTubeSubscriptions />
       )}
     </YouTubeAccessTokenContext.Provider>
   );

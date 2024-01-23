@@ -10,7 +10,7 @@ export default function Root() {
 
   return (
     <>
-      <ShowHideProviders
+      <ProvidersFilter
         twitchState={[showTwitch, setShowTwitch]}
         youtubeState={[showYoutube, setShowYoutube]}
       />
@@ -22,7 +22,7 @@ export default function Root() {
 
 type providerState = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 
-const ShowHideProviders = ({
+const ProvidersFilter = ({
   twitchState,
   youtubeState,
 }: {
@@ -34,7 +34,7 @@ const ShowHideProviders = ({
 
   return (
     <div className="mt-4">
-      <DropdownButton label="Show/Hide Providers" buttonColor="primary">
+      <DropdownButton label="Filter Providers" buttonColor="primary">
         <li>
           <CheckBoxButton
             label="Twitch"

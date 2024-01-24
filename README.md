@@ -23,7 +23,6 @@ This web application connects with various media platforms to show live streams 
   - [x] Filter YouTube Videos by Channel
 - [ ] Preferences Page
   - [x] Integrations lists and other preferences
-  - [ ] Convert this to an uncontrolled form, using defaultValue to set initial values
 - [ ] "FAQ" Page
   - [ ] Can't add Netflix, because there is no public API anymore
 - [x] Update eslint config

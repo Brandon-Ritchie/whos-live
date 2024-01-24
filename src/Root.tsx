@@ -1,12 +1,12 @@
 import { useContext, useState } from "react";
-import Twitch from "../twitch/components/Twitch";
-import Youtube from "../youtube/components/YouTube";
-import DropdownButton from "../shared/DropdownButton";
-import CheckBoxButton from "../shared/CheckBoxButton";
+import Twitch from "./lib/twitch/components/Twitch";
+import Youtube from "./lib/youtube/components/YouTube";
+import DropdownButton from "./lib/shared/DropdownButton";
+import CheckBoxButton from "./lib/shared/CheckBoxButton";
 import {
   ProfileSettings,
   ProfileSettingsContext,
-} from "../profile/contexts/ProfileSettingsContext";
+} from "./lib/profile/contexts/ProfileSettingsContext";
 import { Link } from "react-router-dom";
 
 export default function Root() {
@@ -39,18 +39,26 @@ const Welcome = () => {
   return (
     <div className="flex h-full flex-col items-center justify-center">
       <h1>Welcome to ContentDash!</h1>
-      <p>ContentDash is a dashboard to keep track of your favorite content!</p>
-      <p>
+      <WelcomeParagraph>
+        ContentDash is a dashboard to keep track of your favorite content!
+      </WelcomeParagraph>
+      <WelcomeParagraph>
         You can connect your Twitch and YouTube accounts to see your favorite
         streamers and channels all in one place!
-      </p>
-      <p>Head over to the Profile page to get started!</p>
+      </WelcomeParagraph>
+      <WelcomeParagraph>
+        Head over to the Profile page to get started!
+      </WelcomeParagraph>
       <Link to="/profile">
         <button className="btn btn-primary mt-4">Profile</button>
       </Link>
     </div>
   );
 };
+
+const WelcomeParagraph = ({ children }: { children: React.ReactNode }) => (
+  <p className="my-4 text-lg">{children}</p>
+);
 
 type providerState = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 

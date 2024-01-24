@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ProfileSettingsContext } from "../profile/contexts/ProfileSettingsContext";
-import ProfileForm from "../profile/components/ProfileForm";
+import { ProfileSettingsContext } from "../contexts/ProfileSettingsContext";
+import ProfileForm from "./ProfileForm";
 
 export default function Profile() {
   const [profileSettings, setProfileSettings] = useContext(

@@ -16,18 +16,19 @@ This web application connects with various media platforms to show live streams 
   - [x] Seperate live from VODs?
     > This is not possible, as there is no differentiation between livestreams and videos
   - [x] "Paginate" YouTube videos, showing 8 at a time
-    - [ ] Figure out why the screen moves when loading the next videos
+    - [x] Figure out why the screen moves when loading the next videos
   - [ ] Be able to watch videos in the page
 - [x] Filters on main page
   - [x] Show/Hide providers
   - [x] Filter YouTube Videos by Channel
 - [ ] Preferences Page
-  - [ ] Integrations lists and other preferences
-    > Do this as a form with form submission
+  - [x] Integrations lists and other preferences
+  - [ ] Convert this to an uncontrolled form, using defaultValue to set initial values
 - [ ] "FAQ" Page
   - [ ] Can't add Netflix, because there is no public API anymore
 - [x] Update eslint config
 - [x] Better loading indicators
+- [ ] Refactor as necessary to make it feel better to work through the repo
 
 ## Notes
 

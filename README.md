@@ -21,7 +21,7 @@ This web application connects with various media platforms to show live streams 
 - [x] Filters on main page
   - [x] Show/Hide providers
   - [x] Filter YouTube Videos by Channel
-- [ ] Preferences Page
+- [x] Preferences Page
   - [x] Integrations lists and other preferences
 - [ ] "FAQ" Page
   - [ ] Can't add Netflix, because there is no public API anymore

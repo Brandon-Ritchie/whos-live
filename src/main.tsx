@@ -11,6 +11,7 @@ import Profile from "./lib/pages/Profile.tsx";
 import {
   ProfileSettings,
   ProfileSettingsContext,
+  ProfileSettingsSchema,
 } from "./lib/profile/contexts/ProfileSettingsContext.ts";
 
 const queryClient = new QueryClient({
@@ -23,11 +24,22 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  const profileState = useState<ProfileSettings | null>(null);
+  const [profileSettings, setProfileSettings] =
+    useState<ProfileSettings | null>(null);
+
+  const parsedSettings = ProfileSettingsSchema.safeParse(
+    JSON.parse(localStorage.getItem("profileSettings") ?? "{}"),
+  );
+
+  if (!profileSettings && parsedSettings.success) {
+    setProfileSettings(parsedSettings.data);
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ProfileSettingsContext.Provider value={profileState}>
+      <ProfileSettingsContext.Provider
+        value={[profileSettings, setProfileSettings]}
+      >
         <PageLayout />
       </ProfileSettingsContext.Provider>
     </QueryClientProvider>

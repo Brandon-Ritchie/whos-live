@@ -10,13 +10,13 @@ export default function ProfileYoutubeSubsRange({
   return (
     <label htmlFor={name}>
       <span className="label">
-        Number of YouTube Subscribers To Use: {numberOfSubs}
+        Number of YouTube Subscribers To Use: {numberOfSubs ?? 25}
       </span>
       <input
         type="range"
         min={5}
         max={50}
-        value={numberOfSubs}
+        value={numberOfSubs ?? 25}
         onChange={(e) => onChange(Number(e.target.value))}
         className="range"
         step={5}

@@ -51,10 +51,13 @@ const fetchYouTubeSubscriptions: QueryFunction<
     "youtube-subscriptions",
     {
       youtubeAccessToken: string | null;
+      numOfSubscriptions: number;
     },
   ]
 > = async ({ queryKey }) => {
-  const { youtubeAccessToken } = queryKey[1];
+  const { youtubeAccessToken, numOfSubscriptions } = queryKey[1];
+
+  console.log(numOfSubscriptions);
 
   if (youtubeAccessToken === null) {
     throw new Error("No YouTube access token");
@@ -65,7 +68,7 @@ const fetchYouTubeSubscriptions: QueryFunction<
       `key=${youtubeClientId}&` +
       `part=snippet&` +
       `mine=true&` +
-      `maxResults=25&` +
+      `maxResults=${numOfSubscriptions}&` +
       "order=unread",
     {
       headers: {
@@ -79,6 +82,7 @@ const fetchYouTubeSubscriptions: QueryFunction<
 
 export const useYouTubeSubscriptions = (params: {
   youtubeAccessToken: string | null;
+  numOfSubscriptions: number;
 }): [SubscriberSnippet[] | undefined, QueryStatus] => {
   const results = useQuery({
     queryKey: ["youtube-subscriptions", params],

@@ -13,13 +13,16 @@ import LoadingIndicator from "@/lib/shared/LoadingIndicator";
 import DropdownButton from "@/lib/shared/DropdownButton";
 import CheckBoxButton from "@/lib/shared/CheckBoxButton";
 import PagintationButtons from "@/lib/shared/PaginationButtons";
+import { ProfileSettingsContext } from "@/lib/profile/contexts/ProfileSettingsContext";
 
 export default function YouTubeSubscriptionsWrapper() {
+  const [profileSettings] = useContext(ProfileSettingsContext);
   const [youtubeAccessToken, setYoutubeAccessToken] = useContext(
     YouTubeAccessTokenContext,
   );
   const [youtubeSubscriptions, subscriptionsStatus] = useYouTubeSubscriptions({
     youtubeAccessToken,
+    numOfSubscriptions: profileSettings?.youtubeSubscriptionCount ?? 25,
   });
 
   if (subscriptionsStatus === "error") {

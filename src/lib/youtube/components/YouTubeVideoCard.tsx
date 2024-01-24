@@ -1,9 +1,9 @@
-import Card from "@/lib/shared/Card";
+import { VideoCard } from "@/lib/shared/Cards";
 import { YouTubeVideo } from "../hooks/useYouTubeSubscribedVideos";
 
 const YouTubeVideoCard = ({ video }: { video: YouTubeVideo }) => {
   return (
-    <Card>
+    <VideoCard>
       <a href={`https://youtube.com/watch?v=${video.contentDetails.videoId}`}>
         <img
           src={video.snippet.thumbnails.high.url}
@@ -20,7 +20,7 @@ const YouTubeVideoCard = ({ video }: { video: YouTubeVideo }) => {
       <div className="h-10">
         <p className="line-clamp-2">{video.snippet.title}</p>
       </div>
-    </Card>
+    </VideoCard>
   );
 };
 

@@ -5,8 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PageLayout from "./lib/shared/PageLayout.tsx";
 import Root from "./Root.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import OAuthTwitch from "./lib/twitch/components/OAuthTwitch.tsx";
-import OAuthYouTube from "./lib/youtube/components/OAuthYouTube.tsx";
+import OAuth from "./lib/shared/OAuth.tsx";
 import Profile from "./lib/profile/components/Profile.tsx";
 import {
   ProfileSettings,
@@ -61,11 +60,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/oauth/twitch",
-        element: <OAuthTwitch />,
+        element: <OAuth />,
       },
       {
         path: "/oauth/youtube",
-        element: <OAuthYouTube />,
+        element: <OAuth />,
+      },
+      {
+        path: "/oauth/twitch/profile",
+        element: <OAuth />,
+      },
+      {
+        path: "/oauth/youtube/profile",
+        element: <OAuth />,
       },
     ],
   },

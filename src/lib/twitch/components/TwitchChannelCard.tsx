@@ -1,13 +1,13 @@
 import { remToPixels } from "@/lib/utils/remToPixels";
 import { TwitchChannel } from "../hooks/useTwitchFollowed";
-import Card from "@/lib/shared/Card";
+import { VideoCard } from "@/lib/shared/Cards";
 
 const TwitchChannelCard = ({ channel }: { channel: TwitchChannel }) => {
   const thumbnailWidth = remToPixels(24); // rem from max-w-96
   const thumbnailHeight = thumbnailWidth * 0.5625; // 16:9 aspect ratio
 
   return (
-    <Card>
+    <VideoCard>
       <a href={`https://twitch.tv/${channel.user_name}`}>
         <img
           src={channel.thumbnail_url
@@ -30,7 +30,7 @@ const TwitchChannelCard = ({ channel }: { channel: TwitchChannel }) => {
       >
         {channel.game_name}
       </a>
-    </Card>
+    </VideoCard>
   );
 };
 

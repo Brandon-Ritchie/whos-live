@@ -46,7 +46,7 @@ export default function ProfileForm({
         label="Show YouTube"
         checked={profileSettings?.useYoutube ?? false}
         name="useYoutube"
-        onChange={(checked) =>
+        onChange={(checked: boolean) =>
           setProfileSettings({
             ...profileSettings!,
             useYoutube: checked,
@@ -57,7 +57,7 @@ export default function ProfileForm({
         <ProfileYoutubeSubsRange
           numberOfSubs={profileSettings?.youtubeSubscriptionCount}
           name="youtubeSubscriptionCount"
-          onChange={(numberOfSubs) =>
+          onChange={(numberOfSubs: number) =>
             setProfileSettings({
               ...profileSettings,
               youtubeSubscriptionCount: numberOfSubs,

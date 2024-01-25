@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ProfileSettings } from "../contexts/ProfileSettingsContext";
 import ToggleWithLabel from "@/lib/shared/ToggleWithLabel";
 import ProfileYoutubeSubsRange from "./ProfileYouTubeSubsRange";
@@ -10,33 +9,19 @@ export default function ProfileForm({
   profileSettings: ProfileSettings | null;
   setProfileSettings: (settings: ProfileSettings) => void;
 }) {
-  const [buttonState, setButtonState] = useState<"idle" | "success" | "error">(
-    "idle",
-  );
-
-  function handleSubmit() {
-    try {
-      localStorage.setItem("profileSettings", JSON.stringify(profileSettings));
-      setButtonState("success");
-      setTimeout(() => {
-        setButtonState("idle");
-      }, 3000);
-    } catch (e) {
-      setButtonState("error");
-      setTimeout(() => {
-        setButtonState("idle");
-      }, 3000);
-    }
+  function handleChange(profileSettings: ProfileSettings) {
+    localStorage.setItem("profileSettings", JSON.stringify(profileSettings));
+    setProfileSettings(profileSettings);
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col self-center">
       <ToggleWithLabel
         label="Show Twitch"
         checked={profileSettings?.useTwitch ?? false}
         name="useTwitch"
         onChange={(checked) =>
-          setProfileSettings({
+          handleChange({
             ...profileSettings!,
             useTwitch: checked,
           })
@@ -47,7 +32,7 @@ export default function ProfileForm({
         checked={profileSettings?.useYoutube ?? false}
         name="useYoutube"
         onChange={(checked: boolean) =>
-          setProfileSettings({
+          handleChange({
             ...profileSettings!,
             useYoutube: checked,
           })
@@ -58,24 +43,12 @@ export default function ProfileForm({
           numberOfSubs={profileSettings?.youtubeSubscriptionCount}
           name="youtubeSubscriptionCount"
           onChange={(numberOfSubs: number) =>
-            setProfileSettings({
+            handleChange({
               ...profileSettings,
               youtubeSubscriptionCount: numberOfSubs,
             })
           }
         />
-      )}
-
-      {buttonState === "idle" && (
-        <button className="btn btn-primary my-4" onClick={handleSubmit}>
-          Save
-        </button>
-      )}
-      {buttonState === "success" && (
-        <button className="btn btn-success my-4">Saved!</button>
-      )}
-      {buttonState === "error" && (
-        <button className="btn btn-error my-4">Error!</button>
       )}
     </div>
   );

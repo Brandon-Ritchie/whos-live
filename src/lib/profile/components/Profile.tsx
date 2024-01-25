@@ -12,7 +12,7 @@ export default function Profile() {
   return (
     <div>
       <h1>Profile</h1>
-      <div className="flex flex-wrap justify-around gap-4">
+      <div className="flex flex-wrap items-start justify-around gap-4">
         <Card>
           <div className="min-w-72">
             <ProfileForm

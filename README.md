@@ -4,6 +4,20 @@
 
 This web application connects with various media platforms to show live streams and recent videos via OAuth 2.0 connections
 
+## Technologies Used
+
+- Vite
+- React
+- TypeScript
+- DaisyUI
+  - Tailwind
+- ESlint
+  - Various plugins
+- Prettier
+- React Query
+- Axios
+- Zod
+
 ## TODO
 
 - [x] Twitch Integration

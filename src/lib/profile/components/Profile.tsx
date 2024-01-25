@@ -12,7 +12,7 @@ export default function Profile() {
   return (
     <div>
       <h1>Profile</h1>
-      <div className="flex flex-wrap items-start justify-around gap-4">
+      <div className="flex flex-col flex-wrap items-center justify-center gap-4 lg:flex-row lg:items-start lg:justify-around">
         <Card>
           <div className="min-w-72">
             <ProfileForm
@@ -21,7 +21,7 @@ export default function Profile() {
             />
           </div>
         </Card>
-        <div className="flex flex-grow flex-wrap justify-center gap-4 self-center">
+        <div className="flex flex-wrap justify-center gap-4 self-center lg:flex-grow">
           {profileSettings?.useTwitch && <ConnectCard provider="twitch" />}
           {profileSettings?.useYoutube && <ConnectCard provider="youtube" />}
         </div>

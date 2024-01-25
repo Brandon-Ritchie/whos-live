@@ -69,6 +69,8 @@ function YouTubeSubscriptions({
     selectedPage * 8,
   );
 
+  const maxPage = Math.ceil(filteredSubscribedVideos?.length ?? 0 / 8);
+
   return (
     <>
       <VideoFilters
@@ -76,17 +78,20 @@ function YouTubeSubscriptions({
         setSelectedChannels={setSelectedChannels}
         youtubeSubscriptions={sortedSubscriptions}
       />
+      <YouTubePaginationButtons
+        selectedPage={selectedPage}
+        setSelectedPage={setSelectedPage}
+        maxPage={maxPage}
+      />
       <YouTubeCards
         paginatedSubscribedVideos={paginatedSubscribedVideos}
         subscribedVideosStatus={subscribedVideosStatus}
       />
-      <div className="mt-4 flex justify-center">
-        <PagintationButtons
-          selectedPage={selectedPage}
-          setSelectedPage={setSelectedPage}
-          maxPage={Math.ceil((filteredSubscribedVideos?.length ?? 0) / 8)}
-        />
-      </div>
+      <YouTubePaginationButtons
+        selectedPage={selectedPage}
+        setSelectedPage={setSelectedPage}
+        maxPage={maxPage}
+      />
     </>
   );
 }
@@ -162,3 +167,23 @@ const YouTubeCards = ({
     </div>
   );
 };
+
+function YouTubePaginationButtons({
+  selectedPage,
+  setSelectedPage,
+  maxPage,
+}: {
+  selectedPage: number;
+  setSelectedPage: React.Dispatch<React.SetStateAction<number>>;
+  maxPage: number;
+}) {
+  return (
+    <div className="my-4 flex justify-center">
+      <PagintationButtons
+        selectedPage={selectedPage}
+        setSelectedPage={setSelectedPage}
+        maxPage={maxPage}
+      />
+    </div>
+  );
+}

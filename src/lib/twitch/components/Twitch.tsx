@@ -3,7 +3,7 @@ import TwitchConnectButton from "./TwitchConnectButton";
 import TwitchFollowedChannels from "./TwitchFollowedChannels";
 import { useState } from "react";
 
-const Twitch = () => {
+export default function Twitch() {
   const [twitchAccessToken, setTwitchAccessToken] = useState<string | null>(
     null,
   );
@@ -24,6 +24,4 @@ const Twitch = () => {
       )}
     </TwitchAccessTokenContext.Provider>
   );
-};
-
-export default Twitch;
+}

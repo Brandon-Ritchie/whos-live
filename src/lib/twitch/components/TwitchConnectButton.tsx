@@ -1,6 +1,6 @@
 import { twitchOAuthEndpoint } from "@/lib/utils/constants";
 
-const TwitchConnectButton = () => {
+export default function TwitchConnectButton() {
   if (!twitchOAuthEndpoint) {
     console.error("Missing VITE_TWITCH_REDIRECT_URI environment variable");
     return (
@@ -15,6 +15,4 @@ const TwitchConnectButton = () => {
       Link your Twitch account
     </a>
   );
-};
-
-export default TwitchConnectButton;
+}

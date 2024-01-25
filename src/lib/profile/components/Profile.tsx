@@ -21,7 +21,7 @@ export default function Profile() {
             />
           </div>
         </Card>
-        <div className="flex flex-wrap justify-center gap-4 self-center">
+        <div className="flex flex-grow flex-wrap justify-center gap-4 self-center">
           {profileSettings?.useTwitch && <ConnectCard provider="twitch" />}
           {profileSettings?.useYoutube && <ConnectCard provider="youtube" />}
         </div>

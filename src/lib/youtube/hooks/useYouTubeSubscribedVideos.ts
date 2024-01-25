@@ -109,9 +109,7 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
     },
   );
 
-  const parsedResponse = ChannelsResponseSchema.parse(res.data);
-
-  const playlistIds = parsedResponse.items.map(
+  const playlistIds = ChannelsResponseSchema.parse(res.data).items.map(
     (item) => item.contentDetails.relatedPlaylists.uploads,
   );
 

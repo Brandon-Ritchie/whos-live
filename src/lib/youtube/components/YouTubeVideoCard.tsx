@@ -1,7 +1,7 @@
 import { VideoCard } from "@/lib/shared/Cards";
 import { YouTubeVideo } from "../hooks/useYouTubeSubscribedVideos";
 
-const YouTubeVideoCard = ({ video }: { video: YouTubeVideo }) => {
+export default function YouTubeVideoCard({ video }: { video: YouTubeVideo }) {
   return (
     <VideoCard>
       <a href={`https://youtube.com/watch?v=${video.contentDetails.videoId}`}>
@@ -22,6 +22,4 @@ const YouTubeVideoCard = ({ video }: { video: YouTubeVideo }) => {
       </div>
     </VideoCard>
   );
-};
-
-export default YouTubeVideoCard;
+}

@@ -47,6 +47,9 @@ const YouTubeVideoSchema = z.object({
       high: z.object({
         url: z.string(),
       }),
+      standard: z.object({
+        url: z.string(),
+      }),
     }),
     channelTitle: z.string(),
     playlistId: z.string(),
@@ -57,9 +60,6 @@ const YouTubeVideoSchema = z.object({
   }),
   contentDetails: z.object({
     videoId: z.string(),
-    startAt: z.string(),
-    endAt: z.string(),
-    note: z.string(),
     videoPublishedAt: z.string(),
   }),
 });
@@ -78,7 +78,6 @@ const PlayListItemsResponseSchema = z.object({
 });
 type PlayListItemsResponse = z.infer<typeof PlayListItemsResponseSchema>;
 
-// TODO refactor this and actually use the zod schemas to validate the data
 const fetchYouTubeSubscribedVideos: QueryFunction<
   YouTubeVideo[],
   [
@@ -142,6 +141,8 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
   const videos = playlistItems.flatMap(
     (playlistItems) => playlistItems.data?.items,
   );
+
+  z.array(YouTubeVideoSchema).parse(videos);
 
   videos.sort((a, b) => {
     const aDate = new Date(a?.contentDetails.videoPublishedAt);

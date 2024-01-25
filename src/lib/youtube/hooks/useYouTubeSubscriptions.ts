@@ -57,8 +57,6 @@ const fetchYouTubeSubscriptions: QueryFunction<
 > = async ({ queryKey }) => {
   const { youtubeAccessToken, numOfSubscriptions } = queryKey[1];
 
-  console.log(numOfSubscriptions);
-
   if (youtubeAccessToken === null) {
     throw new Error("No YouTube access token");
   }

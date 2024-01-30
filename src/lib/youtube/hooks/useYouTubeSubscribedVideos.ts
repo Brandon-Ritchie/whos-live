@@ -116,6 +116,7 @@ const fetchYouTubeSubscribedVideos: QueryFunction<
   const playlistItemPromises: Promise<AxiosResponse<PlayListItemsResponse>>[] =
     [];
 
+  // TODO look into React Query's useQueries hook
   for (const playlistId of playlistIds) {
     const playlistRes = axios.get<PlayListItemsResponse>(
       "https://www.googleapis.com/youtube/v3/playlistItems?" +
